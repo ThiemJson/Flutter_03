@@ -1,13 +1,11 @@
 import 'dart:ffi';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class AddToList extends StatefulWidget {
   @override
   _AddToListState createState() => _AddToListState();
 }
-
 class _AddToListState extends State<AddToList> {
   List<Item> ListItem = new List<Item>();
   final _contentController = new TextEditingController();
@@ -28,7 +26,17 @@ class _AddToListState extends State<AddToList> {
     print('Building this APPPPP...');
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.green,
+          title: Text(
+            'Add To List',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
         body: SafeArea(
           minimum: EdgeInsets.only(left: 30, right: 30),
           child: Column(
@@ -83,13 +91,11 @@ class _AddToListState extends State<AddToList> {
     );
   }
 }
-
 class Item{
   String _content;
   double _amount;
   Item(this._content, this._amount);
 }
-
 class _Item extends StatelessWidget {
   Item item = null;
   _Item(this.item);
