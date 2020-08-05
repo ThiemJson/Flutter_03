@@ -5,9 +5,10 @@ import 'Other.dart';
 import 'ListView.dart';
 import 'MainHomePage.dart';
 import 'Poster.dart';
+import 'AddToList.dart';
 
 void main() {
-  runApp(MyHomePage());
+  runApp(AddToList());
 }
 
 
