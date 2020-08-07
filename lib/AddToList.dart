@@ -129,13 +129,81 @@ class _Item extends StatelessWidget {
   _Item(this.item);
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.account_circle),
-      title: Text("${item._content}"),
-      subtitle: Text("Amount: ${item._amount}"),
-      onTap: (){
-        print('On tapping');
-      },
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      color: Colors.blue,
+      elevation: 20,
+      child: ListTile(
+        leading: const Icon(Icons.account_box, color: Colors.white, size: 40,),
+        title: Row(
+          children: <Widget>[
+            Icon(Icons.account_circle, color: Colors.white, size: 25,),
+            SizedBox(width: 10,),
+            Text("${item._content}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+            SizedBox(width: 10,),
+            Icon(Icons.beenhere, color: Colors.white, size: 12,),
+            SizedBox(width: 3,),
+            Text("Verified Acounnt", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),),
+
+          ],
+        ),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              alignment: Alignment.topRight,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.add_shopping_cart,color: Colors.white, size: 15,),
+                      SizedBox(width: 5,),
+                      Text("Amount: ${item._amount}", style: TextStyle(color: Colors.white70, fontStyle: FontStyle.italic, fontSize: 15),),
+                    ],
+                  ),
+                  SizedBox(height: 5,),
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.account_balance,color: Colors.white, size: 15,),
+                      SizedBox(width: 5,),
+                      Text("Payment: Banking", style: TextStyle(color: Colors.white70, fontStyle: FontStyle.italic, fontSize: 15),),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              alignment: Alignment.topRight,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.add_shopping_cart,color: Colors.white, size: 15,),
+                      SizedBox(width: 5,),
+                      Text("Amount: ${item._amount}", style: TextStyle(color: Colors.white70, fontStyle: FontStyle.italic, fontSize: 15),),
+                    ],
+                  ),
+                  SizedBox(height: 5,),
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.account_balance,color: Colors.white, size: 15,),
+                      SizedBox(width: 5,),
+                      Text("Payment: Banking", style: TextStyle(color: Colors.white70, fontStyle: FontStyle.italic, fontSize: 15),),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        onTap: (){
+          print('On tapping');
+        },
+      ),
     );
   }
 }
