@@ -6,9 +6,9 @@ import 'ListView.dart';
 import 'MainHomePage.dart';
 import 'Poster.dart';
 import 'AddToList.dart';
-
+import 'MyAppBar.dart';
 void main() {
-  runApp(AddToList());
+  runApp(MyAppBar());
 }
 
 
