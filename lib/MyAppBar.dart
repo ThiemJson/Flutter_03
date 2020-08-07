@@ -2,18 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 
-class TutorialHome extends StatelessWidget {
+/*class TutorialHome extends StatelessWidget {
+  String _content = '';
+  final _contenController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // Scaffold is a layout for the major Material Components.
+    return
+  }
+}*/
+
+
+class TutorialHome extends StatefulWidget {
+  @override
+  _TutorialHomeState createState() => _TutorialHomeState();
+}
+
+class _TutorialHomeState extends State<TutorialHome> {
+  String _content ='';
+  final _contentController = new TextEditingController();
+  final GlobalKey<ScaffoldState> _scafoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      key: _scafoldKey,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: (){
-            print("day la dang an button bar");
-          }
+            icon: Icon(Icons.menu),
+            tooltip: 'Navigation menu',
+            onPressed: (){
+              print("day la dang an button bar");
+            }
         ),
         centerTitle: true,
         title: Container(
@@ -21,6 +41,12 @@ class TutorialHome extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: TextFormField(
+                  onChanged: (text){
+                    setState(() {
+                      _content = text;
+                    });
+                  },
+                  controller: _contentController,
                   textDirection: TextDirection.ltr,
                   style: TextStyle(color: Colors.white, fontSize: 20),
                   decoration: InputDecoration(
@@ -62,7 +88,13 @@ class TutorialHome extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search),
             tooltip: 'Search',
-            onPressed: ()=>print("Search button was taped !"),
+            onPressed: ()=>{
+              _scafoldKey.currentState.showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.blue,
+                  content: Text("This content is not Invalid : ${this._content}\nPlease check again !", style: TextStyle(color: Colors.white),),
+                  duration: Duration(seconds: 3),
+                ))},
           ),
           IconButton(
             icon: Icon(Icons.access_alarm),
@@ -80,6 +112,6 @@ class TutorialHome extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: null,
       ),
-    );
+    );;
   }
 }
