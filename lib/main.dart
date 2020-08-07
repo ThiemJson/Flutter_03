@@ -8,10 +8,7 @@ import 'Poster.dart';
 import 'AddToList.dart';
 import 'MyAppBar.dart';
 void main() {
-  runApp(MaterialApp(
-    title: 'Don gian chi la mot cai app',
-    home: TutorialHome(),
-  ));
+  runApp(AddToList());
 }
 
 

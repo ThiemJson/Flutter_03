@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ class AddToList extends StatefulWidget {
   _AddToListState createState() => _AddToListState();
 }
 class _AddToListState extends State<AddToList> {
+  GlobalKey<ScaffoldState> _scarfolKey = new GlobalKey<ScaffoldState>();
   List<Item> ListItem = new List<Item>();
   final _contentController = new TextEditingController();
   final _amountController  = new TextEditingController();
@@ -21,11 +23,21 @@ class _AddToListState extends State<AddToList> {
     return ListWidget;
   }
 
+  void showSnackBar(){
+    _scarfolKey.currentState.showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.blue,
+          content: Text("Bạn cần nhập đầy đủ thông tin:", style: TextStyle(fontSize: 15),),
+          duration: Duration(seconds:  3),
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     print('Building this APPPPP...');
     return MaterialApp(
       home: Scaffold(
+        key: _scarfolKey,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.green,
@@ -43,6 +55,7 @@ class _AddToListState extends State<AddToList> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               TextField(
+                autofocus: true,
                 decoration: InputDecoration(
                     labelText: 'Content'
                 ),
@@ -72,8 +85,23 @@ class _AddToListState extends State<AddToList> {
                 color: Colors.blue,
                 onPressed: (){
                   setState(() {
-                    Item item = new Item(_CurrentContent, double.tryParse(_CurrentAmount) ?? 0);
-                    ListItem.add(item);
+                    if( !(_CurrentAmount == "" || _CurrentContent == "")){
+                      Item item = new Item(_CurrentContent, double.tryParse(_CurrentAmount) ?? 0);
+                      ListItem.add(item);
+                      _contentController.text = "";
+                      _amountController.text = "";
+                      _CurrentContent = "";
+                      _CurrentAmount ="";
+                    }
+                    else{
+                      _scarfolKey.currentState.showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.blue,
+                          content: Text("Bạn cần nhập đầy đủ thông tin:", style: TextStyle(fontSize: 15),),
+                          duration: Duration(seconds:  3),
+                        )
+                      );
+                    }
                   });
                 },
                 icon: Icon(Icons.add),
@@ -101,27 +129,13 @@ class _Item extends StatelessWidget {
   _Item(this.item);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          item._content,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.blue
-          ),
-        ),
-        SizedBox(
-          width: 30,
-        ),
-        Text(
-          item._amount.toString(),
-          style: TextStyle(
-              fontSize: 20,
-              color: Colors.red
-          ),
-        )
-      ],
+    return ListTile(
+      leading: const Icon(Icons.account_circle),
+      title: Text("${item._content}"),
+      subtitle: Text("Amount: ${item._amount}"),
+      onTap: (){
+        print('On tapping');
+      },
     );
   }
 }
