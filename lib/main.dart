@@ -7,8 +7,9 @@ import 'MainHomePage.dart';
 import 'Poster.dart';
 import 'AddToList.dart';
 import 'MyAppBar.dart';
+import 'getSinhVien.dart';
 void main() {
-  runApp(AddToList());
+  runApp( new MaterialApp(home: Scaffold( body: SafeArea( child: Center(child: Column(children: <Widget>[Student("Nguyễn Cao Thiêm", "60TH3", "1851061743","Infomation Tech","ThuyLoi Uninversity",false)],),),)),));
 }
 
 
