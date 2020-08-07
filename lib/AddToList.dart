@@ -20,6 +20,7 @@ class _AddToListState extends State<AddToList> {
     List<Widget> ListWidget = new List<Widget>();
     item.forEach((_itemOfListItem) {
       ListWidget.add(new _Item(_itemOfListItem));
+      ListWidget.add(new SizedBox(height: 10,));
     });
     return ListWidget;
   }
@@ -141,10 +142,10 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(19),
       ),
       color: Colors.blue,
-      elevation: 20,
+      elevation: 30,
       child: ListTile(
         leading: const Icon(Icons.account_box, color: Colors.white, size: 40,),
         title: Row(
@@ -153,10 +154,9 @@ class _Item extends StatelessWidget {
             SizedBox(width: 10,),
             Text("${item._content}", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
             SizedBox(width: 10,),
-            Icon(Icons.beenhere, color: Colors.white, size: 12,),
+            Icon(Icons.beenhere, color: Colors.white, size: 12, ),
             SizedBox(width: 3,),
             Text("Verified Acounnt", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),),
-
           ],
         ),
         subtitle: Row(
