@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class AddToList extends StatefulWidget {
   @override
@@ -40,14 +41,23 @@ class _AddToListState extends State<AddToList> {
         key: _scarfolKey,
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.green,
-          title: Text(
-            'Add To List',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
-          ),
+          backgroundColor: Colors.blue,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                Icons.add_shopping_cart, color: Colors.white, size: 30,
+              ),
+              SizedBox(width: 10,),
+              Text(
+                'Add To Cart',
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ],
+          )
         ),
         body: SafeArea(
           minimum: EdgeInsets.only(left: 30, right: 30),
