@@ -8,11 +8,13 @@ class AddToList extends StatefulWidget {
   @override
   _AddToListState createState() => _AddToListState();
 }
+
+
 class _AddToListState extends State<AddToList> {
   GlobalKey<ScaffoldState> _scarfolKey = new GlobalKey<ScaffoldState>();
   List<Item> ListItem = new List<Item>();
-  final _contentController = new TextEditingController();
-  final _amountController  = new TextEditingController();
+  TextEditingController _contentController = new TextEditingController();
+  TextEditingController _amountController  = new TextEditingController();
   String _CurrentContent = '';
   String _CurrentAmount = '';
 
@@ -130,6 +132,9 @@ class _AddToListState extends State<AddToList> {
     );
   }
 }
+
+
+
 class Item{
   String _content;
   double _amount;
